@@ -1,17 +1,21 @@
 <?php namespace App;
 
-use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
-
-	use Authenticatable, CanResetPassword;
+class User extends Model {
+	const TYPE_ADMIN = 0;
+	const TYPE_USER = 1;
+	const TYPE_PENDING = 2;
+	const TYPE_SUSPENDED = 3;
 
 	protected $table = 'Users';
-	protected $fillable = ['Firstname', 'Lastname', 'Username', 'Email', 'Password','Phone','Type' ];
-	protected $hidden = ['password', 'remember_token'];
-	
+	protected $fillable = ['Firstname', 'Lastname', 'Username', 'Email', 'Password', 'Phone', 'Type' ];
+	protected $hidden = ['Password', 'Token'];
+	public $incrementing = true;
+	public $timestamps = false;
+
+	public function activate()
+	{
+		return $this->hasONe('App\Activate', 'UserId', 'Id');
+	}
 }

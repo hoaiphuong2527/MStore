@@ -42,14 +42,5 @@ class WebController extends Controller {
 		return view("frontend.$page");
 	}
 
-	public function checkout($id)
-	{
-		$pro = new Product();
-		$product = $pro->getProductByID($id);
-		if ($product != null)
-		{
-			return view("frontend.checkout", ['product' => $product]);
-		}
-		else return "Page not found";
-	}
+	
 }

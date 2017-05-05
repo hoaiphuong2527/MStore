@@ -1,5 +1,4 @@
 <?php
-use Illuminate\Support\Facades\Hash;
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', 'WebController@index');
@@ -8,6 +7,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/{page}', 'WebController@page');
     Route::get('/register', 'RegisterController@index');
     Route::post('/register', 'RegisterController@register');
+    Route::get('/activate/{userid}/{token}/{code}', 'RegisterController@activate');
 });
 
 

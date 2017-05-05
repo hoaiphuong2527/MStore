@@ -48,27 +48,28 @@
     </tr>
     
     </tr>
-    <tr class="cross1">
-    <td class="t-data ring-in"><a href="{{ asset('/product/' . $product->Id)}}" class="at-in"><img src="{{ asset($product->Image) }}" class="img-responsive" alt=""></a>
-    <div class="sed">
-        <h5>Sed ut perspiciatis unde</h5>
-    </div>
-    <div class="clearfix"> </div>
-    <div class="close2"> </div></td>
-    <td class="t-data">{{$product->PriceVN()}}</td>
-    <td class="t-data"><div class="quantity"> 
-                        <div class="quantity-select">            
-                            <div class="entry value-minus">&nbsp;</div>
-                                <div class="entry value"><span class="span-1">1</span></div>									
-                            <div class="entry value-plus active">&nbsp;</div>
+    <tr class="cross2">
+        <td class="t-data ring-in"><a href="single.html" class="at-in"><img src="images/pcc1.jpg" class="img-responsive" alt=""></a>
+        <div class="sed">
+            <h5>Sed ut perspiciatis unde</h5>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="close3"> </div></td>
+        <td class="t-data">$150.00</td>
+        <td class="t-data">
+            <div class="quantity"> 
+                            <div class="quantity-select">            
+                                <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span class="span-1">1</span></div>									
+                                <div class="entry value-plus active">&nbsp;</div>
+                            </div>
                         </div>
-                    </div>
-                    <!--quantity-->
+                    
+        </td>
+        <td class="t-data">$150.00</td>
+        
+    </tr>
 
-    </td>
-    <td class="t-data">$product->PriceVN()</td>
-
-   
     </table>
         <div class=" cart-total">
 
