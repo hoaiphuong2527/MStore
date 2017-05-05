@@ -9,6 +9,7 @@ class User extends Model {
 	const TYPE_SUSPENDED = 3;
 
 	protected $table = 'Users';
+	protected $primaryKey = 'Id';
 	protected $fillable = ['Firstname', 'Lastname', 'Username', 'Email', 'Password', 'Phone', 'Type' ];
 	protected $hidden = ['Password', 'Token'];
 	public $incrementing = true;

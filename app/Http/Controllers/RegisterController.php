@@ -88,8 +88,36 @@ class RegisterController extends Controller
         else
         {
             $user = User::find($userid);
-            $user->Firstname = "12fgsf";
+            if ($user->Token != $token)
+            {
+                return view('viewError.error1');
+            }
+            $activate = $user->activate;
+            if ($activate == null)
+            {
+                return view('viewError.error2');
+            }
+
+            if ((int) $activate->Code != (int) $code)
+            {
+                $activate->Count++;
+                $activate->save();
+                if ($activate->Count >= 5)
+                {
+                    $activate->delete();
+                }
+                return view('viewError.error3');
+            }
+
+            $Expried = Carbon::parse($activate->Expried);
+            if ($Expried->lt(Carbon::now()))
+            {
+                return view('viewError.error4');
+            }
+
+            $user->Type = User::TYPE_USER;
             $user->save();
+            $activate->delete();
         }
     }
 }
