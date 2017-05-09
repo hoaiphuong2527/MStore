@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activate extends Model
 {
-    protected $table = 'activates';
+    protected $table = 'Activates';
 	protected $primaryKey = 'Id';
 	protected $fillable = [];
 	protected $hidden = [];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use App\Utils;
 use App\User;
@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use App\Http\Controllers\Controller;
+
 
 class RegisterController extends Controller
 {
@@ -25,12 +27,11 @@ class RegisterController extends Controller
 		$validator = Validator::make($request->all(), [
                 'firstname'     => 'required|max:30',
                 'lastname'      => 'required|max:30',
-                'username'      => 'required|min:5|max:30|unique:users,Username',
-                'email'         => 'required|email|unique:users,Email',
+                'username'      => 'required|min:5|max:30|unique:Users,Username',
+                'email'         => 'required|email|unique:Users,Email',
                 'password'      => 'required|min:5|max:30|confirmed'
             ],
-            [
-            ]);
+            []);
 
         if ($validator->fails())
         {
@@ -118,6 +119,8 @@ class RegisterController extends Controller
             $user->Type = User::TYPE_USER;
             $user->save();
             $activate->delete();
+
+            return redirect('/');
         }
     }
 }

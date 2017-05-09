@@ -1,23 +1,22 @@
 @extends('backend.masterpage.masterpage')
 @section('title')
-      Products
+      Feedbacks
 @endsection
 @section('content')
 	<!-- BEGIN CONTENT -->
 	<div id="content">
 		<div id="content-header">
 			<div id="breadcrumb"> <a href="{{ asset ('/admin') }}" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
-			<h1>Manage Products</h1>
+			<h1>Manage Feedbacks</h1>
 		</div>
 		<div class="container-fluid">
 			<hr>
-			<a href="{{ asset('/admin/product/add') }}" class="btn btn-success">New product</a>
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="widget-box">
 						
 						<div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-							<h5>Products</h5>
+							<h5>Feedbacks</h5>
 						</div>
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped">
@@ -25,22 +24,21 @@
 									<tr>
 										<th>ID</th>
 										<th>Name</th>										
-										<th>Category</th>
-										<th>Price</th>
-										<th>Actions</th>
+										<th>Email</th>
+										<th>Subject</th>
+										<th>Message</th>
+                                        <th>Status</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($products as $product)
-										<tr product-id="{{ $product->Id }}">
-											<td>{{ $product->Id }}</td>
-											<td>{{ $product->Name }}</td>
-											<th>{{ $product->category->Name }} </th>
-											<th>{{ $product->PriceVN() }}</th>
-										<td>
-											<div class="btn-edit btn btn-success btn-mini">Edit</div>
-											<div class="btn-delete btn btn-danger btn-mini">Delete</div>
-										</td>
+									@foreach($feedbacks as $feedback)
+										<tr product-id="{{ $feedback->Id }}">
+											<td>{{ $feedback->Id }}</td>
+											<td>{{ $feedback->Name }}</td>
+											<th>{{ $feedback->Email }} </th>
+											<th>{{ $feedback->Subject }}</th>
+                                            <th>{{ $feedback->Message }}</th>
+                                            <th>{{ $feedback->Status }}</th>	
 									</tr>
 									@endforeach
 								</tbody>

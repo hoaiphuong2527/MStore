@@ -11,8 +11,25 @@
 					<div class="header-right animated wow fadeInRight" data-wow-delay=".5s">
 						<div class="header-right1 ">
 							<ul>
+						<?php
+							use App\Utils;
+
+							if (Utils::userLogged())
+							{
+								$user = Utils::getUser();
+								?>
+								<li><i class="glyphicon glyphicon-book" ></i><a href="{{ url('profile') }}">{{ $user->Firstname . ' ' . $user->Lastname }}</a></li>
+								<li><i class="glyphicon glyphicon-log-in" ></i><a href="{{ url('logout') }}">Logout</a></li>
+								<?php
+							}
+							else
+							{
+							?>
 								<li><i class="glyphicon glyphicon-log-in" ></i><a href="{{ url('login') }}">Login</a></li>
 								<li><i class="glyphicon glyphicon-book" ></i><a href="{{ url('register') }}">Register</a></li>
+							<?php
+							}
+						?>	
 							</ul>
 						</div>
 						<div class="header-right2">

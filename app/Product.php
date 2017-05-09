@@ -67,10 +67,10 @@ class Product extends Model {
 	}
 	
 	
-	public function addNewProduct($name,$category,$price,$kind,$description,$specification)
+	public function addNewProduct($name, $category, $price, $kind, $description, $specification, $image)
 	{
-		$product = Product::insert( ["CategoryId" => $category,'Name' => $name , 
-		"Description" => "$description", "Specification" => "$specification", "Price" => $price, "KindID" => $kind]);
-    	return $product;
+		self::create(["CategoryId" => $category, 'Name' => $name , 
+				"Description" => $description, "Specification" => $specification, 
+				"Price" => $price, "KindId" => $kind, 'Image' => $image]);
 	}
 }

@@ -20,6 +20,20 @@ class Category extends Model {
 		return $categories;
 	}
 
+	public function getCategoties()
+	{
+		$categories = self::all();
+		return $categories;
+	}
+
+	public function destroyCategory($id)
+	{
+		$category = Category::find((int) $id);
+        $category->delete();
+	}
 	
-	
+	public function addNewCategory($name, $category)
+	{
+		self::create(['Name' => $name,"ParentId" => $category]);
+	}
 }

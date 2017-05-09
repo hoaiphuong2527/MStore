@@ -13,26 +13,28 @@
 <!-- contact -->
 <div class="login">
    <div class="container">
-      <form>
-         <div class="col-md-6 login-do1 animated wow fadeInLeft" data-wow-delay=".5s">
+      <form method="POST">
+            {{ csrf_field() }}
+         <div class="login-do1 animated wow fadeInLeft" data-wow-delay=".5s">
             <div class="login-mail">
-               <input type="text" placeholder="Email" required="">
+               <input name="username" type="text" placeholder="Username" value="{{ old('username') }}">
                <i class="glyphicon glyphicon-envelope"></i>
             </div>
             <div class="login-mail">
-               <input type="password" placeholder="Password" required="">
+               <input name="password" type="password" placeholder="Password">
                <i class="glyphicon glyphicon-lock"></i>
             </div>
-            <a class="news-letter " href="#">
-            <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Forgot Password</label>
-            </a>
+            
          </div>
-         <div class="col-md-6 login-do animated wow fadeInRight" data-wow-delay=".5s">
+         <div class="login-do animated wow fadeInRight" data-wow-delay=".5s">
+            <span class="help-block">
+                  <strong style="color: red;">{{ $errors->first() }}</strong>
+            </span>
             <label class="hvr-sweep-to-top login-sub">
             <input type="submit" value="login">
             </label>
             <p>Do not have an account?</p>
-            <a href="register.html" class="hvr-sweep-to-top">Signup</a>
+            <a href="{{ url('register') }}" class="hvr-sweep-to-top">Signup</a>           
          </div>
          <div class="clearfix"> </div>
       </form>

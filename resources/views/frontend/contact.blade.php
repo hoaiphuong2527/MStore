@@ -15,28 +15,28 @@
 <div class="contact">
 	<div class="container">
 		<div class="col-md-8 contact-grids1 animated wow fadeInRight" data-wow-delay=".5s">
-			<form>
+			<form method="POST">
+				{{ csrf_field() }}
 				<div class="contact-form2">
 					<h4>Name</h4>
-					<input type="text" placeholder="" required="">
-				</div>
-				<div class="contact-form2">
-					<h4>Website</h4>
-					<input type="text" placeholder="" required="">
+					<input name="name" type="text" placeholder="" required="" value="{{ old('name') }}">
 				</div>
 				<div class="contact-form2">
 					<h4>Email</h4>
-					<input type="email" placeholder="" required="">
+					<input name="email" type="email" placeholder="" required="" value="{{ old('email') }}">
 				</div>
 				<div class="contact-form2">
 					<h4>Subject</h4>
-					<input type="text" placeholder="" required="">
+					<input name="subject" type="text" placeholder="" required="" value="{{ old('subject') }}">
 				</div>
 				<div class="contact-me ">
 					<h4>Message</h4>
-					<textarea type="text"  placeholder="" required=""> </textarea>
+					<textarea name="message" type="text"  placeholder="">{{ old('message') }}</textarea>
 				</div>
 				<input type="submit" value="Submit" >
+				<span class="help-block">
+					<strong style="color: red;">{{ $errors->first() }}</strong>
+				</span>
 			</form>
 		</div>
 		<div class="col-md-4 contact-grids">

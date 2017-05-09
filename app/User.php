@@ -15,6 +15,13 @@ class User extends Model {
 	public $incrementing = true;
 	public $timestamps = false;
 
+	public static function findUser($Name)
+	{
+		$userField = 'Username';
+        if (filter_var($Name, FILTER_VALIDATE_EMAIL)) $userField = 'Email';
+        return User::where($userField, $Name)->first();
+	}
+
 	public function activate()
 	{
 		return $this->hasONe('App\Activate', 'UserId', 'Id');

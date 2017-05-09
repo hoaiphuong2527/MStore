@@ -13,9 +13,7 @@
 		<!-- js -->
 		<script src="{{ URL::asset('js/jquery.min.js') }}"></script>
 		<!-- //js -->
-		<!-- cart -->
-		<script src="{{ URL::asset('js/simpleCart.min.js') }}"></script>
-		<!-- cart -->
+
 		<!-- for bootstrap working -->
 		<script type="text/javascript" src="{{ URL::asset('js/bootstrap-3.1.1.min.js') }}"></script>
 		<!-- //for bootstrap working -->

@@ -1,20 +1,18 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use App\Category;
 use App\Product;
 
-class WebController extends Controller {
-	public function __construct()
-	{
-		$this->middleware('guest');
-	}
 
+class HomeController extends Controller {
 	public function index()
 	{
 		$proLap = new Product();
 		$dataLap = $proLap->getProductLapTopForIndex();
 		$proPhone = new Product();
 		$dataPhone = $proPhone->getProductPhoneForIndex();
+
 		return view('frontend.index', ['products' => $dataLap, 'proPhones' => $dataPhone]);
 	}
 
@@ -36,11 +34,8 @@ class WebController extends Controller {
 		else return "Page not found";
 
 	}
-
-	public function page($page)
+	public function contact()
 	{
-		return view("frontend.$page");
+		return view('frontend.contact');
 	}
-
-	
 }

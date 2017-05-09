@@ -29,20 +29,22 @@
 
     <div class="container">
 
-      <form class="login-form" action="index.html">        
+      <form method="POST" class="login-form" >    
+        {{ csrf_field() }}    
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
               <span class="input-group-addon"><i class="icon_profile"></i></span>
-              <input type="text" class="form-control" placeholder="Email" autofocus>
+              <input name="username" type="text" class="form-control" placeholder="Email or Username" value="{{ old('username') }}">
             </div>
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input name="password" type="password" class="form-control" placeholder="Password" value="">
             </div>
-            
+            <span class="help-block">
+                  <strong style="color: red;">{{ $errors->first() }}</strong>
+            </span>
             <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-            
         </div>
       </form>
     <div class="text-right">

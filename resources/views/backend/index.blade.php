@@ -6,7 +6,7 @@
 	<!-- BEGIN CONTENT -->
 	<div id="content">
 		<div id="content-header">
-			<div id="breadcrumb"> <a href="{{ asset ('/admin/product') }}" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
+			<div id="breadcrumb"> <a href="{{ asset('/admin/product') }}" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
 			<h1>Manage Products</h1>
 		</div>
 		<div class="container-fluid">

@@ -1,23 +1,23 @@
 @extends('backend.masterpage.masterpage')
 @section('title')
-      Products
+      Categories
 @endsection
 @section('content')
 	<!-- BEGIN CONTENT -->
 	<div id="content">
 		<div id="content-header">
 			<div id="breadcrumb"> <a href="{{ asset ('/admin') }}" title="Go to Home" class="tip-bottom current"><i class="icon-home"></i> Home</a></div>
-			<h1>Manage Products</h1>
+			<h1>Manage Categories</h1>
 		</div>
 		<div class="container-fluid">
 			<hr>
-			<a href="{{ asset('/admin/product/add') }}" class="btn btn-success">New product</a>
+			<a href="{{ asset('/admin/category/add') }}" class="btn btn-success">New category</a>
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="widget-box">
 						
 						<div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-							<h5>Products</h5>
+							<h5>Category</h5>
 						</div>
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped">
@@ -25,18 +25,17 @@
 									<tr>
 										<th>ID</th>
 										<th>Name</th>										
-										<th>Category</th>
-										<th>Price</th>
+										<th>Parent Id</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($products as $product)
-										<tr product-id="{{ $product->Id }}">
-											<td>{{ $product->Id }}</td>
-											<td>{{ $product->Name }}</td>
-											<th>{{ $product->category->Name }} </th>
-											<th>{{ $product->PriceVN() }}</th>
+									@foreach($categories as $category)
+										<tr product-id="{{ $category->Id }}">
+											<td>{{ $category->Id }}</td>
+											<td>{{ $category->Name }}</td>
+											<th>{{ $category->ParentId }} </th>
+											
 										<td>
 											<div class="btn-edit btn btn-success btn-mini">Edit</div>
 											<div class="btn-delete btn btn-danger btn-mini">Delete</div>

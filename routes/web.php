@@ -1,27 +1,51 @@
 <?php
-
-Route::group(['prefix' => '/'], function () {
-    Route::get('/', 'WebController@index');
-    Route::get('/category/{id}', 'WebController@category');
-    Route::get('/product/{id}', 'WebController@product');
-    Route::get('/{page}', 'WebController@page');
-    Route::get('/register', 'RegisterController@index');
-    Route::post('/register', 'RegisterController@register');
-    Route::get('/activate/{userid}/{token}/{code}', 'RegisterController@activate');
+use Illuminate\Support\Facades\Hash;
+Route::get('password', function() {
+    return Hash::make("012345Abc");
 });
 
+Route::group(['prefix' => '/'], function () {
+    Route::get('/', 'Frontend\HomeController@index');
+    Route::get('/category/{id}', 'Frontend\HomeController@category');
+    Route::get('/product/{id}', 'Frontend\HomeController@product');
+    Route::get('/contact','Frontend\HomeController@contact');
+    Route::post('/contact','Frontend\FeedbackController@create');
+
+    Route::group(['prefix' => '/', 'middleware' => ['GuestAuthencate']], function () {
+        Route::get('/login', 'Frontend\LoginController@index');
+        Route::post('/login', 'Frontend\LoginController@login');
+        Route::get('/register', 'Frontend\RegisterController@index');
+        Route::post('/register', 'Frontend\RegisterController@register');
+        Route::get('/activate/{userid}/{token}/{code}', 'Frontend\RegisterController@activate');
+    });
+
+    Route::get('/logout', 'Frontend\LoginController@logout');
+});
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/login', function() {
-        return view('backend.login');
-    });
+    Route::get('/login', 'Backend\BackendController@loginIndex');
+    Route::post('/login', 'Backend\BackendController@login');
+    Route::get('/logout', 'Backend\BackendController@logout');
     
-    Route::group(['prefix' => 'product'], function () {
-        Route::get('/', 'BackendProductController@index');
-        Route::get('/edit/{id}', 'BackendProductController@edit');
-        Route::post('/edit/{id}', 'BackendProductController@update');
-        Route::get('/delete/{id}', 'BackendProductController@destroy');
-        Route::get('/new', 'BackendProductController@create');
-        Route::get('/new', 'BackendProductController@store');
+    Route::group(['prefix' => '', 'middleware' => ['AdminAuthencate']], function () {
+        Route::get('/', 'Backend\BackendController@index');
+        Route::group(['prefix' => 'product'], function () {
+            Route::get('/edit/{id}', 'Backend\ProductController@edit');
+            Route::post('/edit/{id}', 'Backend\ProductController@update');
+            Route::get('/delete/{id}', 'Backend\ProductController@destroy');
+
+            Route::get('/add', 'Backend\ProductController@addIndex');
+            Route::post('/add', 'Backend\ProductController@add');
+        });
+        Route::get('/feedback','Backend\FeedbackController@index');
+        Route::group(['prefix' => 'category'], function () {
+            Route::get('/', 'Backend\CategoryController@index');
+            Route::get('/edit/{id}', 'Backend\CategoryController@edit');
+            Route::post('/edit/{id}', 'Backend\CategoryController@update');
+            Route::get('/delete/{id}', 'Backend\CategoryController@destroy');
+
+            Route::get('/add', 'Backend\CategoryController@addIndex');
+            Route::post('/add', 'Backend\CategoryController@add');
+        });
     });
 });

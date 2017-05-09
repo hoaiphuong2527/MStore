@@ -4,7 +4,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Activate code</title>
+		<title>Thank for your feedback</title>
 		<style>
 			img {
 			border: none;
@@ -248,30 +248,20 @@
 				<td class="container">
 					<div class="content">
 						<!-- START CENTERED WHITE CONTAINER -->
-						<span class="preheader">This is email to confirm your account</span>
+						<span class="preheader">This is Technology Style</span>
 						<table class="main">
 							<!-- START MAIN CONTENT AREA -->
 							<tr>
 								<td class="wrapper">
 									<table border="0" cellpadding="0" cellspacing="0">
 										<tr>
-											<td>												
-												<p style="color:red; font-size:200%;  text-align: center;">Không thể kích hoạt tài khoản này!</p>
+											<td>
+												<p>Hi {{ $name }},</p>
+                                                <p>We have received your feedback about "{{ $problem }}."
+												<p>Please to wait us!</p>
+												<p>Thank you very much! ^^</p>
 											</td>
 										</tr>
-										<tbody>
-											<tr>
-												<td align="right">
-													<table border="0" cellpadding="0" cellspacing="0">
-														<tbody>
-															<tr>
-																<td> <a href="{{ url('register') }}" target="_blank " style="font-size:130%;  text-align: center;">Come back Register page</a> </td>
-															</tr>
-														</tbody>
-													</table>
-												</td>
-											</tr>
-										</tbody>
 									</table>
 								</td>
 							</tr>
