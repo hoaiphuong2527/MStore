@@ -21,8 +21,8 @@
 							<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
 								{{ csrf_field() }}
 								<?php
-									use App\Category;
-									$categories = Category::all();
+									use App\Kind;
+									$kinds = Kind::all();
 								?>
 								<div class="control-group">
 									<label class="control-label">Name :</label>
@@ -31,11 +31,11 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label">Category:</label>
+									<label class="control-label">Kind:</label>
 									<div class="controls">
 										<select name="category"/>
-										@foreach ($categories as $category)	
-											<option value="{{ $category->ParentId }}" selected>{{ $category->Name }}</option>
+										@foreach ($kinds as $kind)	
+											<option value="{{ $kind->Id }}" selected>{{ $kind->Name }}</option>
 										@endforeach
                                             <option value="0">Null</option>
 										</select>

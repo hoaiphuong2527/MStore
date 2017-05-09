@@ -15,4 +15,6 @@ class Kind extends Model {
 	}
 
 	
+
+	
 }

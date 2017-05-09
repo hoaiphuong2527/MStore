@@ -41,9 +41,9 @@ class CategoryController extends Controller
         {
             
             $name = $request->input('name');
-            $category = $request->input('category');
+            $kind = $request->input('category');
             $category = new Category();
-            $category->addNewCategory($name, $category);
+            $category->addNewCategory($name, $kind);
 
             return redirect('/admin/category');
         }

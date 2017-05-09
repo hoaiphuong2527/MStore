@@ -32,8 +32,8 @@ class Category extends Model {
         $category->delete();
 	}
 	
-	public function addNewCategory($name, $category)
+	public function addNewCategory($name, $kind)
 	{
-		self::create(['Name' => $name,"ParentId" => $category]);
+		self::create(['Name' => $name,"ParentId" => $kind]);
 	}
 }
