@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => '', 'middleware' => ['AdminAuthencate']], function () {
         Route::get('/', 'Backend\BackendController@index');
         Route::group(['prefix' => 'product'], function () {
+            Route::get('/', 'Backend\ProductController@index');
             Route::get('/edit/{id}', 'Backend\ProductController@edit');
             Route::post('/edit/{id}', 'Backend\ProductController@update');
             Route::get('/delete/{id}', 'Backend\ProductController@destroy');
@@ -47,5 +48,6 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/add', 'Backend\CategoryController@addIndex');
             Route::post('/add', 'Backend\CategoryController@add');
         });
+        
     });
 });
