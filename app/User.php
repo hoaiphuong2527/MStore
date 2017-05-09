@@ -26,4 +26,10 @@ class User extends Model {
 	{
 		return $this->hasONe('App\Activate', 'UserId', 'Id');
 	}
+
+	public function getAdmins()
+	{
+		$admin = User::where('Type',0)->get();
+		return $admin;
+	}
 }
