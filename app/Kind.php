@@ -14,7 +14,10 @@ class Kind extends Model {
 		return $this->hasMany('App\Product', 'KindId', 'Id');
 	}
 
-	
+	public function addNewKind($name)
+	{
+		self::create(['Name' => $name]);
+	}
 
 	
 }

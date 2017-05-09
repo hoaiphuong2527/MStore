@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Category;
+use App\Kind;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
@@ -44,7 +45,11 @@ class CategoryController extends Controller
             $kind = $request->input('category');
             $category = new Category();
             $category->addNewCategory($name, $kind);
-
+            if((int) $kind == 0)
+            {
+                $kindProduct = new Kind();
+                $kindProduct->addNewKind($name);
+            }
             return redirect('/admin/category');
         }
     }
@@ -74,7 +79,7 @@ class CategoryController extends Controller
             $category = Category::find((int) $id);
             $category->Name = $request->get('name');
             $category->ParentId = $request->get('category');
- 
+
             $category->save();
 
             return redirect('admin/category');
