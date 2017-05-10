@@ -22,7 +22,7 @@
 								{{ csrf_field() }}
 								<?php
 									use App\Category;
-									$categories = Category::all();
+									$categories = Category::where('ParentId', 0)->get();
 								?>
 								<div class="control-group">
 									<label class="control-label">Name :</label>
@@ -33,11 +33,11 @@
 								<div class="control-group">
 									<label class="control-label">Category:</label>
 									<div class="controls">
-										<select name="category"/>
+										<select name="category" value="{{ $category->ParentId }}"/>
+										<option value="0">[No parent]</option>
 										@foreach ($categories as $category)	
-											<option value="{{ $category->Id }}" selected>{{ $category->Name }}</option>
-										@endforeach
-                                            <option value="0">Null</option>
+											<option value="{{ $category->Id }}">{{ $category->Name }}</option>
+										@endforeach  
 										</select>
 									</div>
 								</div>

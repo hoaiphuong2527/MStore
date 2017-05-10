@@ -38,4 +38,9 @@ class HomeController extends Controller {
 	{
 		return view('frontend.contact');
 	}
+
+	public function checkout()
+	{
+		return view('frontend.checkout');
+	}
 }

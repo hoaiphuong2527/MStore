@@ -25,7 +25,7 @@
 									<tr>
 										<th>ID</th>
 										<th>Name</th>										
-										<th>Parent Id</th>
+										<th>Parent</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -34,7 +34,13 @@
 										<tr product-id="{{ $category->Id }}">
 											<td>{{ $category->Id }}</td>
 											<td>{{ $category->Name }}</td>
-											<th>{{ $category->ParentId }} </th>
+											<th>
+											@if ($category->parent == null)
+												{{ '[No parent]' }}
+											@else
+											 	{{ $category->parent->Name }}
+											@endif
+											</th>
 											
 										<td>
 											<div class="btn-edit btn btn-success btn-mini">Edit</div>

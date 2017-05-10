@@ -68,8 +68,8 @@ class RegisterController extends Controller
 
             Mail::to($user->Email, $user->Firstname)
                     ->send(new ActivateMail($userid, $user->Token, $user->Firstname, $activate->Code, $activate->Expried));
-
-            return view('viewError.notice');
+            
+            return view('frontend.notice');
         }
 	}
 

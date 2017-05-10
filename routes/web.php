@@ -18,7 +18,7 @@ Route::group(['prefix' => '/'], function () {
         Route::post('/register', 'Frontend\RegisterController@register');
         Route::get('/activate/{userid}/{token}/{code}', 'Frontend\RegisterController@activate');
     });
-
+    Route::get('/checkout', 'Frontend\HomeController@checkout');
     Route::get('/logout', 'Frontend\LoginController@logout');
 });
 
@@ -48,6 +48,11 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/add', 'Backend\CategoryController@addIndex');
             Route::post('/add', 'Backend\CategoryController@add');
         });
+
+        Route::group(['prefix' => 'kind'], function () {
+            Route::get('/delete/{id}', 'Backend\CategoryController@destroyKind');
+        });
+        
         
     });
 });

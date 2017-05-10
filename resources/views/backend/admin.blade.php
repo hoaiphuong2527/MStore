@@ -11,41 +11,36 @@
 		</div>
 		<div class="container-fluid">
 			<hr>
+			<div class="form-actions">
+				<a href="{{ asset('/admin/category') }}" class="btn btn-info"><span>Categories</span></a>
+				<a href="{{ asset('/admin/product') }}" class="btn btn-info"><span>Products</span></a>
+				<a href="{{ asset('/admin/feedback') }}" class="btn btn-info"><span>Feedbacks</span></a>
+			</div>
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="widget-box">
 						
 						<div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-							<h5>Admins</h5>
+							<h5>Users</h5>
 						</div>
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped">
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Name</th>										
-										<th>Địa Chỉ</th>	
+										<th>User name</th>										
+										<th>Adress</th>	
+										
 									</tr>
 								</thead>
 								<tbody>
-									<td>1</td>
-									<td>Đào Hoài Phương</td>
-									<td>Bình Định</td>
-								</tbody>
-								<tbody>
-									<td>2</td>
-									<td>Nguyễn Thị Thanh Hương</td>
-									<td>Tiền Giang</td>
-								</tbody>
-								<tbody>
-									<td>3</td>
-									<td>Nguyễn Đăng Khoa</td>
-									<td>TP. Hồ Chí Minh</td>
-								</tbody>
-								<tbody>
-									<td>4</td>
-									<td>Nguyễn Quý Đức An Tôn</td>
-									<td>Phú Yên</td>
+									@foreach($users as $user)
+										<tr user-id="{{ $user->Id }}">
+											<td>{{ $user->Id }}</td>
+											<td>{{ $user->Username }}</td>
+											<th>{{ $user->Email }} </th>												
+									</tr>
+									@endforeach
 								</tbody>
 							</table>
 						</div>

@@ -9,6 +9,32 @@ class Category extends Model {
 	public $incrementing = true;
 	public $timestamps = false;
 
+	public function remove()
+	{
+		//Find all child category and delete them
+		foreach ($this->childs as $category)
+		{
+			$category->remove();
+		}
+
+		//Find all product in category and delete them
+		foreach ($this->products as $product)
+        {
+            $product->delete();
+        }
+        $this->delete();
+	}
+
+	public function parent()
+	{
+		return $this->hasOne('App\Category', 'Id', 'ParentId');
+	}
+
+	public function products()
+	{
+		return $this->hasMany('App\Product', 'CategoryId', 'Id');
+	}
+
 	public function childs()
 	{
 		return $this->hasMany('App\Category', 'ParentId', 'Id');
@@ -20,7 +46,7 @@ class Category extends Model {
 		return $categories;
 	}
 
-	public function getCategoties()
+	public function getCategories()
 	{
 		$categories = self::all();
 		return $categories;

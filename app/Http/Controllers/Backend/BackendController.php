@@ -15,7 +15,9 @@ class BackendController extends Controller
 {
     public function index()
     {
-        return view('backend.admin');
+        $userObj = new User;
+        $users = $userObj->getUsers();
+        return view('backend.admin',['users' => $users]);
     }
 
     public function loginIndex()
@@ -53,7 +55,7 @@ class BackendController extends Controller
                         Cookie::queue(Cookie::make('adminid', $user->Id, 'minutes'));
                         Cookie::queue(Cookie::make('admintoken', $user->Token, 'minutes'));
 
-                        return redirect('/admin/product');
+                        return redirect('/admin');
                     }
                     else return redirect()->back()->withErrors(['login' => "Username or password doesn't match"])->withInput();
                 }
@@ -71,7 +73,7 @@ class BackendController extends Controller
         return redirect('/admin/login');
     }
 
-
+    
 
 
 }

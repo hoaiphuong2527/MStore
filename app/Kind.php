@@ -19,5 +19,12 @@ class Kind extends Model {
 		self::create(['Name' => $name]);
 	}
 
+
+	public function destroyKind($id)
+	{
+		$kind = Kind::find((int) $id);
+        $kind->delete();
+	}
+
 	
 }

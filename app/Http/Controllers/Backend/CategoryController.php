@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = new Category();
-		$categories = $category->getCategoties();
+		$categories = $category->getCategories();
 
 		return view('backend.category.categories', ['categories' => $categories]);
     }
@@ -29,8 +29,7 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
                 'name'               => 'required|max:255',
-                'category'           => 'required|',
-                
+                'category'           => 'required',
             ],
             []);
 
@@ -40,16 +39,13 @@ class CategoryController extends Controller
         }
         else
         {
-            
             $name = $request->input('name');
-            $kind = $request->input('category');
+            $parent = $request->input('category');
             $category = new Category();
-            $category->addNewCategory($name, $kind);
-            if((int) $kind == 0)
-            {
-                $kindProduct = new Kind();
-                $kindProduct->addNewKind($name);
-            }
+            $category->Name = $name;
+            $category->ParentId = (int) $parent;
+            $category->save();
+        
             return redirect('/admin/category');
         }
     }
@@ -89,8 +85,17 @@ class CategoryController extends Controller
     
     public function destroy($id)
     {
-        $category = new Category();
-        $category->destroyCategory($id);
+        $category = Categgory::find((int) $id);
+        $category->remove();
+
+        return redirect('admin/category');
+    }
+
+    public function destroyKind($id)
+    {
+        $kind = new Kind();
+        $kind->destroyKind($id);
+        
         return redirect('admin/category');
     }
 }

@@ -21,8 +21,8 @@
 							<form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
 								{{ csrf_field() }}
 								<?php
-									use App\Kind;
-									$kinds = Kind::all();
+									use App\Category;
+									$categories = Category::where('ParentId', 0)->get();
 								?>
 								<div class="control-group">
 									<label class="control-label">Name :</label>
@@ -31,13 +31,13 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label">Kind:</label>
+									<label class="control-label">Parent category:</label>
 									<div class="controls">
-										<select name="category"/>
-										@foreach ($kinds as $kind)	
-											<option value="{{ $kind->Id }}" selected>{{ $kind->Name }}</option>
+										<select name="category" value="{{ old('category', 0) }}"/>
+											<option value="0">[No parent]</option>
+										@foreach ($categories as $category)	
+											<option value="{{ $category->Id }}">{{ $category->Name }}</option>
 										@endforeach
-                                            <option value="0">Null</option>
 										</select>
 									</div>
 								</div>

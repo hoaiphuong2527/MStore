@@ -32,4 +32,12 @@ class User extends Model {
 		$admin = User::where('Type',0)->get();
 		return $admin;
 	}
+
+	public function getUsers()
+	{
+		$user = User::where('Type',1)->get();
+		return $user;
+	}
+
+	
 }
